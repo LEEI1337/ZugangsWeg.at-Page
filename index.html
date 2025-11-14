@@ -45,14 +45,16 @@
                 <a href="#" class="logo">ZugangsWeg.at</a>
                 <span class="made-in-austria" title="Made with ❤️ in Austria">🇦🇹 ❤️</span>
             </div>
+
+            <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten">
+                <span class="toggle-text">Dark Mode</span>
+            </button>
+
             <div class="nav-links">
                 <a href="#vision">Vision</a>
                 <a href="#status">Status</a>
                 <a href="#mitmachen">Mitmachen</a>
                 <a href="#buch">Buch</a>
-                <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
-                    <span class="toggle-icon">🌙</span>
-                </button>
             </div>
         </div>
     </nav>
@@ -298,6 +300,19 @@
                         <form class="newsletter-form" action="https://formspree.io/f/xyzlkrvq" method="POST" id="bookDownloadForm">
                             <input type="hidden" name="_subject" value="Newsletter - Buch Download">
 
+                            <!-- Honeypot: Sieht für Bots wie ECHTES Pflichtfeld aus! -->
+                            <div class="required-field" style="position: absolute; left: -5000px; top: -5000px;" aria-hidden="true">
+                                <label for="website_url" class="field-label">Website (erforderlich):</label>
+                                <input type="text"
+                                       id="website_url"
+                                       name="_gotcha"
+                                       class="form-input required"
+                                       placeholder="Bitte geben Sie Ihre Website ein"
+                                       aria-required="true"
+                                       tabindex="-1"
+                                       autocomplete="off">
+                            </div>
+
                             <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required id="emailInput">
 
                             <textarea name="message" id="messageField" placeholder="Optional: Möchtest du Lena etwas mitteilen?" rows="3"></textarea>
@@ -381,11 +396,72 @@
             <div class="footer-bottom">
                 <p>&copy; 2025 ZugangsWeg.at - ALPHA - Community-gebaut, Open Source (bald)</p>
                 <p><small>Inspiriert von Signal, Wikipedia & HackerOne</small></p>
+
+                <!-- Bot-Schutz Statistik - Versteckt vor Bots durch JavaScript-Rendering -->
+                <div id="botProtectionInfo" style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #334155; opacity: 0; transition: opacity 0.5s;">
+                    <p style="margin-bottom: 0.5rem;"><small>🛡️ <strong>Aktiver Bot-Schutz:</strong></small></p>
+                    <p style="margin-bottom: 0.75rem;"><small>🤖 Bots blockiert (auf diesem Gerät): <strong id="botCounter">0</strong></small></p>
+
+                    <details style="margin-top: 1rem;">
+                        <summary style="cursor: pointer; color: #94a3b8; font-size: 0.875rem; margin-bottom: 0.5rem;">
+                            <small>🔍 Wie funktioniert der Schutz?</small>
+                        </summary>
+                        <div style="margin-top: 0.75rem; padding-left: 1rem; border-left: 2px solid #334155;">
+                            <p style="margin-bottom: 0.75rem;"><small style="line-height: 1.7;">
+                                <strong>Honeypot-Technik:</strong><br>
+                                Ein unsichtbares Feld (5000px außerhalb des Bildschirms) mit verlockendem Namen "Website (erforderlich)".
+                                Bots sehen es als Pflichtfeld und füllen es aus. Menschen sehen es nie.
+                                Wenn ausgefüllt → Bot erkannt → Submission blockiert VOR Formspree.
+                            </small></p>
+
+                            <p style="margin-bottom: 0.75rem;"><small style="line-height: 1.7;">
+                                <strong>Täuschungs-Merkmale:</strong><br>
+                                • CSS-Klassen: <code>required-field</code>, <code>form-input</code><br>
+                                • Label: "Website (erforderlich)"<br>
+                                • Attribute: <code>aria-required="true"</code><br>
+                                • Placeholder: "Bitte geben Sie Ihre Website ein"<br>
+                                → Bot denkt: "Echtes Pflichtfeld!"
+                            </small></p>
+
+                            <p style="margin-bottom: 0.75rem;"><small style="line-height: 1.7;">
+                                <strong>robots.txt Schutz:</strong><br>
+                                ✅ Blockiert ehrliche AI-Crawler (GPTBot, ChatGPT, Claude)<br>
+                                ✅ Schützt /downloads/ vor normalen Crawlern<br>
+                                ❌ Spam-Bots ignorieren robots.txt komplett!
+                            </small></p>
+
+                            <p style="margin-bottom: 0;"><small style="line-height: 1.7; color: #94a3b8;">
+                                💡 <strong>Warum siehst DU das?</strong><br>
+                                Dieser Text wird per JavaScript 500ms nach Laden eingeblendet.
+                                Bots führen meist kein JavaScript aus oder scrapen nur HTML.
+                                Screenreader sehen es (Barrierefreiheit), einfache Bots nicht.
+                            </small></p>
+                        </div>
+                    </details>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
+    // Bot-Counter beim Laden der Seite aktualisieren + Info einblenden
+    window.addEventListener('DOMContentLoaded', function() {
+        // Counter aktualisieren
+        const botCount = parseInt(localStorage.getItem('botCount') || '0');
+        const counterElement = document.getElementById('botCounter');
+        if (counterElement) {
+            counterElement.textContent = botCount;
+        }
+
+        // Bot-Schutz Info einblenden (nach 500ms - Bots sehen es nicht!)
+        setTimeout(function() {
+            const botInfo = document.getElementById('botProtectionInfo');
+            if (botInfo) {
+                botInfo.style.opacity = '0.7';
+            }
+        }, 500);
+    });
+
     // Funktion: Bei Klick auf Rolle → Scroll zum Buch + fülle Nachricht aus
     function scrollToBookAndFill(message) {
         // Scroll zum Buch-Bereich
@@ -398,11 +474,35 @@
         }, 800); // Warte bis Scroll fertig ist
     }
 
-    // Newsletter-Formular mit automatischem Download
+    // Newsletter-Formular mit automatischem Download + BOT-SCHUTZ
     document.getElementById('bookDownloadForm').addEventListener('submit', function(e) {
         e.preventDefault(); // Verhindert normales Submit (das die Seite verlassen würde)
 
         const form = e.target;
+
+        // 🤖 BOT-CHECK: Honeypot-Feld prüfen BEVOR wir zu Formspree senden
+        const honeypot = form.querySelector('[name="_gotcha"]').value;
+
+        if (honeypot !== '') {
+            // BOT ERKANNT! Submission komplett blockieren
+            console.log('🤖 Bot-Versuch blockiert!');
+
+            // Zähle Bot-Versuch (LocalStorage)
+            let botCount = parseInt(localStorage.getItem('botCount') || '0');
+            botCount++;
+            localStorage.setItem('botCount', botCount);
+
+            // Update Counter-Anzeige
+            const counterElement = document.getElementById('botCounter');
+            if (counterElement) {
+                counterElement.textContent = botCount;
+            }
+
+            // NICHTS weiter tun - Bot denkt es hat funktioniert
+            return false;
+        }
+
+        // ✅ MENSCH erkannt → Weiter zu Formspree
         const formData = new FormData(form);
 
         // Formular an Formspree senden (AJAX)
@@ -437,25 +537,25 @@
     // Dark Mode Toggle mit LocalStorage
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
-    const toggleIcon = document.querySelector('.toggle-icon');
+    const toggleText = document.querySelector('.toggle-text');
 
     // Check LocalStorage für gespeicherte Präferenz
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode === 'enabled') {
         body.classList.add('dark-mode');
-        toggleIcon.textContent = '☀️';
+        toggleText.textContent = 'Heller Modus';
     }
 
     // Toggle Dark Mode bei Klick
     darkModeToggle.addEventListener('click', function() {
         body.classList.toggle('dark-mode');
 
-        // Icon ändern
+        // Text ändern
         if (body.classList.contains('dark-mode')) {
-            toggleIcon.textContent = '☀️';
+            toggleText.textContent = 'Heller Modus';
             localStorage.setItem('darkMode', 'enabled');
         } else {
-            toggleIcon.textContent = '🌙';
+            toggleText.textContent = 'Dunkler Modus';
             localStorage.setItem('darkMode', 'disabled');
         }
     });
