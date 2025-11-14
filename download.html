@@ -3,26 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download startet... - ZugangsWeg.at</title>
+    <title>Dein Buch wird heruntergeladen - ZugangsWeg.at</title>
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .download-page {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-align: center;
-            padding: 2rem;
+            margin: 0;
+            padding: 2rem 1rem;
         }
-        .download-box {
-            max-width: 600px;
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
+        .download-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
             border-radius: 20px;
-            padding: 3rem 2rem;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        .download-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
         }
         .download-icon {
             font-size: 4rem;
@@ -33,27 +37,107 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
         }
-        .download-box h1 {
+        .download-header h1 {
             font-size: 2rem;
-            margin-bottom: 1rem;
+            margin: 0 0 0.5rem 0;
         }
-        .download-box p {
-            font-size: 1.125rem;
-            margin-bottom: 2rem;
+        .download-header p {
+            margin: 0;
             opacity: 0.9;
         }
-        .back-btn {
+        .download-content {
+            padding: 3rem 2rem;
+        }
+        .status-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 4px solid #3b82f6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .status-box h3 {
+            margin: 0 0 0.5rem 0;
+            color: #1e40af;
+        }
+        .status-box p {
+            margin: 0;
+            color: #1e3a8a;
+        }
+        .vorwort {
+            border-top: 3px solid #e5e7eb;
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+        .vorwort h2 {
+            color: #667eea;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .vorwort p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        .vorwort strong {
+            color: #0a0a0a;
+        }
+        .quote-section {
+            background: #f9fafb;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+        .author-bio {
+            background: #f3f4f6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+        .author-bio strong {
+            color: #374151;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .cta-box h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+        }
+        .cta-box p {
+            margin: 0 0 1.5rem 0;
+            line-height: 1.7;
+        }
+        .cta-btn {
             display: inline-block;
             padding: 1rem 2rem;
             background: white;
             color: #667eea;
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: transform 0.2s;
         }
-        .back-btn:hover {
+        .cta-btn:hover {
             transform: translateY(-2px);
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .back-link a:hover {
+            text-decoration: underline;
         }
     </style>
     <script>
@@ -64,18 +148,74 @@
     </script>
 </head>
 <body>
-    <div class="download-page">
-        <div class="download-box">
+    <div class="download-container">
+        <div class="download-header">
             <div class="download-icon">📥</div>
             <h1>Vielen Dank!</h1>
-            <p>
-                Dein Download startet in wenigen Sekunden...<br>
-                <strong>Buch 4: Digitale Dysbalance - Von Kleben zu Bauen</strong>
-            </p>
-            <p style="font-size: 1rem; opacity: 0.8;">
-                Du bekommst außerdem eine Bestätigungs-E-Mail an die angegebene Adresse.
-            </p>
-            <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+            <p>Dein Download startet in wenigen Sekunden...</p>
+        </div>
+
+        <div class="download-content">
+            <div class="status-box">
+                <h3>📚 Buch 4: Digitale Dysbalance - Von Kleben zu Bauen</h3>
+                <p><strong>Status:</strong> Das Buch ist zu 95% fertig! Wir arbeiten an den letzten Feinheiten.</p>
+            </div>
+
+            <div class="vorwort">
+                <h2>Vorwort von Dr. Elena Petrova</h2>
+
+                <p>Lena Kulnig hat mich gebeten, das Vorwort zu schreiben.</p>
+
+                <p>Ich habe nein gesagt.</p>
+
+                <p>Nicht weil ich ihr Werk nicht schätze. Sondern weil ich nach drei Büchern dachte: Was soll ein viertes noch ändern?</p>
+
+                <p>Wir kennen die Probleme. Wir haben die Daten. Wir schreiben Berichte, halten Vorträge, diskutieren auf Konferenzen.</p>
+
+                <p><strong>Und nichts passiert.</strong></p>
+
+                <p>Dann hat Lena mir Kapitel 1 geschickt. Maria, 72, wartet drei Wochen auf einen Amtstermin. Ich kenne diese Menschen. Ich kenne hunderte von ihnen.</p>
+
+                <div class="quote-section">
+                    <p><strong>Lena baut.</strong></p>
+                    <p>Das ist, was dieses Buch anders macht. Lena sagt nicht: "Hier sind die Probleme."</p>
+                    <p>Lena sagt: <strong>"Hier ist der Plan. Fang morgen an."</strong></p>
+                </div>
+
+                <p>Und das macht mich nervös. Weil es bedeutet, dass ich keine Ausreden mehr habe. Ich kann nicht mehr sagen: "Das System muss sich ändern." Ich muss mich ändern.</p>
+
+                <p><strong>Du musst dich ändern.</strong></p>
+
+                <p style="margin-top: 2rem; text-align: center; font-size: 1.25rem;">
+                    <strong>Lies dieses Buch.</strong><br>
+                    <strong>Dann bau etwas.</strong><br>
+                    Nicht nächstes Jahr. Morgen.
+                </p>
+
+                <div class="author-bio">
+                    <p><strong>Dr. Elena Petrova</strong>, Wien, Januar 2026</p>
+                    <p>Digitalisierungsforscherin bei der GDI Gesellschaft für Digitale Innovation in Wien. Autorin von 'Die Netz-Illusion' (2011) und 'Der Kristall-Effekt: Wie Daten-Monopole Gesellschaften fragmentieren' (2014).</p>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>🤝 Wir brauchen dein Feedback!</h3>
+                <p>
+                    Das Buch ist fast fertig - aber es geht nicht um mich (Lena), es geht um <strong>euch</strong>. Um <strong>uns</strong>.<br>
+                    <strong>Wir haben es in der Hand.</strong>
+                </p>
+                <p>
+                    <strong>Deine Meinung zählt!</strong> Egal ob Kritik, Ideen oder Verbesserungsvorschläge - alles ist willkommen.<br>
+                    Es geht um uns alle, nicht nur um eine Person.
+                </p>
+                <a href="mailto:lena@zugangsweg.at?subject=Feedback%20zu%20Buch%204" class="cta-btn">
+                    📧 Feedback an Lena senden
+                </a>
+            </div>
+
+            <div class="back-link">
+                <a href="index.html">← Zurück zur Startseite</a>
+            </div>
         </div>
     </div>
 </body>
