@@ -147,6 +147,7 @@
     <script>
         let countdown = 30;
         let countdownInterval;
+        let downloadStarted = false; // Verhindert Doppel-Downloads!
 
         // Countdown-Timer
         function startCountdown() {
@@ -163,8 +164,26 @@
 
         // Download sofort starten (bei Button-Klick oder Timer abgelaufen)
         function startDownloadNow() {
+            // Verhindere Doppel-Downloads!
+            if (downloadStarted) {
+                return;
+            }
+            downloadStarted = true;
+
+            // Timer stoppen
             clearInterval(countdownInterval);
+
+            // UI aktualisieren
             document.getElementById('countdown-text').innerHTML = '✅ <strong>Download startet jetzt...</strong>';
+
+            // Button deaktivieren
+            const button = document.querySelector('button');
+            if (button) {
+                button.disabled = true;
+                button.style.opacity = '0.5';
+                button.style.cursor = 'not-allowed';
+                button.textContent = '✅ Download gestartet';
+            }
 
             // Download in neuem Tab öffnen
             window.open('downloads/buch_4_test.pdf', '_blank');
