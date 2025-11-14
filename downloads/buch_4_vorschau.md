@@ -146,7 +146,19 @@ Diese Buchreihe:
 
 ---
 
-## ZugangsWeg.at
+**Weil wir es verdient haben.**
+
+Lena Kulnig
+Eisenstadt, November 2025
+
+📧 lena@zugangsweg.at
+🌐 zugangsweg.at
+
+---
+
+\newpage
+
+# ZugangsWeg.at
 
 **Mehr als nur Social Impact.**
 
@@ -159,9 +171,3 @@ Wer Teil davon werden will: **zugangsweg.at**
 ---
 
 **Weil wir es verdient haben.**
-
-Lena Kulnig
-Eisenstadt, November 2025
-
-📧 lena@zugangsweg.at
-🌐 zugangsweg.at
