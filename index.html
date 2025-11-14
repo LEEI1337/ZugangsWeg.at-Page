@@ -298,14 +298,20 @@
 
                         <form class="newsletter-form" action="https://formspree.io/f/xyzlkrvq" method="POST" id="bookDownloadForm">
                             <input type="hidden" name="_subject" value="Newsletter - Buch Download">
-                            <input type="hidden" name="_next" value="https://zugangsweg.at/download.html">
 
-                            <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required>
+                            <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required id="emailInput">
 
                             <textarea name="message" placeholder="Optional: Möchtest du Lena etwas mitteilen?" rows="3"></textarea>
 
                             <button type="submit" class="btn btn-download">Jetzt Buch downloaden</button>
                         </form>
+
+                        <div id="successMessage" style="display: none; background: rgba(16, 185, 129, 0.2); border: 2px solid #10b981; border-radius: 12px; padding: 1.5rem; margin-top: 1rem; text-align: center;">
+                            <p style="color: white; font-weight: 600; margin: 0;">
+                                ✅ Danke! Dein Download startet in wenigen Sekunden...<br>
+                                <small style="opacity: 0.8;">Du bekommst außerdem eine Bestätigung per E-Mail.</small>
+                            </p>
+                        </div>
 
                         <p class="newsletter-note">
                             <small>
@@ -371,5 +377,43 @@
             </div>
         </div>
     </footer>
+
+    <script>
+    // Newsletter-Formular mit automatischem Download
+    document.getElementById('bookDownloadForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Verhindert normales Submit (das die Seite verlassen würde)
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        // Formular an Formspree senden (AJAX)
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // Erfolgsmeldung anzeigen
+                document.getElementById('successMessage').style.display = 'block';
+                form.style.display = 'none';
+
+                // Download starten nach 2 Sekunden
+                setTimeout(function() {
+                    // Download in neuem Tab öffnen (bleibt auf Hauptseite)
+                    window.open('downloads/buch_4_test.pdf', '_blank');
+                }, 2000);
+
+                // Formular zurücksetzen
+                form.reset();
+            } else {
+                alert('Es gab ein Problem. Bitte versuche es nochmal oder schreib direkt an lena@zugangsweg.at');
+            }
+        }).catch(error => {
+            alert('Es gab ein Problem. Bitte versuche es nochmal oder schreib direkt an lena@zugangsweg.at');
+        });
+    });
+    </script>
 </body>
 </html>
