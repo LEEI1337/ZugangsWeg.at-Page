@@ -145,10 +145,33 @@
         }
     </style>
     <script>
-        // Automatischer Download nach 2 Sekunden
-        setTimeout(function() {
-            window.location.href = 'downloads/buch_4_test.pdf';
-        }, 2000);
+        let countdown = 30;
+        let countdownInterval;
+
+        // Countdown-Timer
+        function startCountdown() {
+            countdownInterval = setInterval(function() {
+                countdown--;
+                document.getElementById('countdown').textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    startDownloadNow();
+                }
+            }, 1000); // Jede Sekunde
+        }
+
+        // Download sofort starten (bei Button-Klick oder Timer abgelaufen)
+        function startDownloadNow() {
+            clearInterval(countdownInterval);
+            document.getElementById('countdown-text').innerHTML = '✅ <strong>Download startet jetzt...</strong>';
+
+            // Download in neuem Tab öffnen
+            window.open('downloads/buch_4_test.pdf', '_blank');
+        }
+
+        // Countdown beim Laden der Seite starten
+        window.onload = startCountdown;
     </script>
 </head>
 <body>
@@ -156,7 +179,10 @@
         <div class="download-header">
             <div class="download-icon">📥</div>
             <h1>Vielen Dank!</h1>
-            <p>Dein Download startet in wenigen Sekunden...</p>
+            <p id="countdown-text">Dein Download startet in <strong id="countdown">30</strong> Sekunden...</p>
+            <button onclick="startDownloadNow()" style="margin-top: 1rem; padding: 0.75rem 1.5rem; background: white; color: #10b981; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: transform 0.2s;">
+                ⚡ Download jetzt starten
+            </button>
         </div>
 
         <div class="download-content">
