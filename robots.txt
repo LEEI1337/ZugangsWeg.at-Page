@@ -1,0 +1,50 @@
+# ZugangsWeg.at - Robots.txt
+# Erlaubt Google/Bing für SEO, blockiert KI-Training-Bots
+
+# Google & Bing dürfen alles (für SEO)
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# KI-Training-Bots BLOCKIEREN
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: ImagesiftBot
+Disallow: /
+
+# Alle anderen Bots (Standard-Verhalten)
+User-agent: *
+Allow: /
+
+# Sitemap für Google/Bing
+Sitemap: https://leei1337.github.io/ZugangsWeg.at-Page/sitemap.xml
