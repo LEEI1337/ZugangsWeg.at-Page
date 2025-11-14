@@ -50,6 +50,9 @@
                 <a href="#status">Status</a>
                 <a href="#mitmachen">Mitmachen</a>
                 <a href="#buch">Buch</a>
+                <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Dark Mode umschalten" title="Dark Mode umschalten">
+                    <span class="toggle-icon">🌙</span>
+                </button>
             </div>
         </div>
     </nav>
@@ -429,6 +432,32 @@
         }).catch(error => {
             alert('Es gab ein Problem. Bitte versuche es nochmal oder schreib direkt an lena@zugangsweg.at');
         });
+    });
+
+    // Dark Mode Toggle mit LocalStorage
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const toggleIcon = document.querySelector('.toggle-icon');
+
+    // Check LocalStorage für gespeicherte Präferenz
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'enabled') {
+        body.classList.add('dark-mode');
+        toggleIcon.textContent = '☀️';
+    }
+
+    // Toggle Dark Mode bei Klick
+    darkModeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark-mode');
+
+        // Icon ändern
+        if (body.classList.contains('dark-mode')) {
+            toggleIcon.textContent = '☀️';
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            toggleIcon.textContent = '🌙';
+            localStorage.setItem('darkMode', 'disabled');
+        }
     });
     </script>
 </body>
