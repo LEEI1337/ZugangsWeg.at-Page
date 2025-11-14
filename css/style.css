@@ -718,7 +718,33 @@ li {
     background: rgba(255, 255, 255, 0.1);
     color: white;
     font-size: 1rem;
+    font-weight: 300;
     transition: all 0.3s;
+}
+
+.newsletter-form textarea {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 300;
+    margin-top: 0.75rem;
+    resize: vertical;
+    transition: all 0.3s;
+}
+
+.newsletter-form textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-form textarea:focus {
+    outline: none;
+    border-color: white;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .newsletter-form input::placeholder {
