@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download startet... - ZugangsWeg.at</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .download-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+        .download-box {
+            max-width: 600px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .download-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .download-box h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .download-box p {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+    <script>
+        // Automatischer Download nach 2 Sekunden
+        setTimeout(function() {
+            window.location.href = 'downloads/buch_4_test.pdf';
+        }, 2000);
+    </script>
+</head>
+<body>
+    <div class="download-page">
+        <div class="download-box">
+            <div class="download-icon">📥</div>
+            <h1>Vielen Dank!</h1>
+            <p>
+                Dein Download startet in wenigen Sekunden...<br>
+                <strong>Buch 4: Digitale Dysbalance - Von Kleben zu Bauen</strong>
+            </p>
+            <p style="font-size: 1rem; opacity: 0.8;">
+                Du bekommst außerdem eine Bestätigungs-E-Mail an die angegebene Adresse.
+            </p>
+            <a href="index.html" class="back-btn">← Zurück zur Startseite</a>
+        </div>
+    </div>
+</body>
+</html>
