@@ -204,40 +204,32 @@
             </p>
 
             <div class="grid-2">
-                <div class="role-card">
+                <div class="role-card clickable" onclick="scrollToBookAndFill('👨‍💻 Entwickler: Ich kann mit Fullstack, Frontend oder Backend helfen (React, Node.js, PostgreSQL, Blockchain).')">
                     <h3>👨‍💻 Entwickler</h3>
                     <p>Fullstack, Frontend, Backend - wir brauchen React, Node.js, PostgreSQL, Blockchain.</p>
                 </div>
-                <div class="role-card">
+                <div class="role-card clickable" onclick="scrollToBookAndFill('🎨 Designer: Ich kann mit UX/UI Design, Accessibility (WCAG 2.1 AA) oder Design System helfen.')">
                     <h3>🎨 Designer</h3>
                     <p>UX/UI Design, Accessibility (WCAG 2.1 AA), Design System.</p>
                 </div>
-                <div class="role-card">
+                <div class="role-card clickable" onclick="scrollToBookAndFill('✍️ Content Creator: Ich kann Guides schreiben, Fallstudien dokumentieren oder Templates erstellen.')">
                     <h3>✍️ Content Creator</h3>
                     <p>Guides schreiben, Fallstudien dokumentieren, Templates erstellen.</p>
                 </div>
-                <div class="role-card">
+                <div class="role-card clickable" onclick="scrollToBookAndFill('🧪 Beta-Tester: Ich möchte erste Probleme melden, Lösungen vorschlagen und Feedback geben.')">
                     <h3>🧪 Beta-Tester</h3>
                     <p>Erste Probleme melden, Lösungen vorschlagen, Feedback geben.</p>
                 </div>
-                <div class="role-card">
+                <div class="role-card clickable" onclick="scrollToBookAndFill('💰 Finanzierung: Ich möchte das Team bezahlen, Server finanzieren oder Entwicklung ermöglichen helfen.')">
                     <h3>💰 Finanzierung</h3>
                     <p>Team bezahlen, Server finanzieren, Entwicklung ermöglichen.</p>
                 </div>
-                <div class="role-card">
+                <div class="role-card clickable" onclick="scrollToBookAndFill('🤷 Andere Skills: Ich habe Fähigkeiten in Projekt-Management, Marketing, Legal oder anderen Bereichen.')">
                     <h3>🤷 Andere Skills</h3>
                     <p>Projekt-Management, Marketing, Legal, Blockchain - wir brauchen viele Fähigkeiten!</p>
                 </div>
             </div>
 
-            <div class="contact-box">
-                <h3>Kontakt aufnehmen</h3>
-                <p class="email-big">
-                    <a href="mailto:lena@zugangsweg.at">lena@zugangsweg.at</a>
-                </p>
-                <p>Lena Kulnig - Eisenstadt, Österreich</p>
-                <p><small>⏱️ Antwortzeit: 24-48h mit Details, Tech-Docs oder Termin-Vorschlag</small></p>
-            </div>
         </div>
     </section>
 
@@ -301,7 +293,7 @@
 
                             <input type="email" name="email" placeholder="Deine E-Mail-Adresse" required id="emailInput">
 
-                            <textarea name="message" placeholder="Optional: Möchtest du Lena etwas mitteilen?" rows="3"></textarea>
+                            <textarea name="message" id="messageField" placeholder="Optional: Möchtest du Lena etwas mitteilen?" rows="3"></textarea>
 
                             <button type="submit" class="btn btn-download">Jetzt Buch downloaden</button>
                         </form>
@@ -387,6 +379,18 @@
     </footer>
 
     <script>
+    // Funktion: Bei Klick auf Rolle → Scroll zum Buch + fülle Nachricht aus
+    function scrollToBookAndFill(message) {
+        // Scroll zum Buch-Bereich
+        document.getElementById('buch').scrollIntoView({ behavior: 'smooth' });
+
+        // Fülle das Nachrichtenfeld aus
+        setTimeout(function() {
+            document.getElementById('messageField').value = message;
+            document.getElementById('emailInput').focus(); // Fokussiere E-Mail-Feld
+        }, 800); // Warte bis Scroll fertig ist
+    }
+
     // Newsletter-Formular mit automatischem Download
     document.getElementById('bookDownloadForm').addEventListener('submit', function(e) {
         e.preventDefault(); // Verhindert normales Submit (das die Seite verlassen würde)

@@ -484,6 +484,21 @@ li {
     transition: all 0.3s;
 }
 
+.role-card.clickable {
+    cursor: pointer;
+}
+
+.role-card.clickable:hover {
+    border-color: #667eea;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+    transform: translateY(-3px);
+}
+
+.role-card.clickable:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+}
+
 .role-card:hover {
     border-color: #667eea;
     box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
